@@ -1,0 +1,37 @@
+{% set name = "overly" %}
+{% set version = "0.1.85" %}
+{% set sha256 = "20a99526c7859acc859e87afd97b5c4916405e7477834f727b49210e478370cb" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+  run:
+    - python >=3.6
+    - h11
+    - sansio-multipart
+
+test:
+  imports:
+    - overly
+
+about:
+  home: https://github.com/theelous3/overly
+  license: MIT
+  license_family: MIT
+  license_file: LICENCE
+  summary: overly - http client testing for hoomans
+  dev_url: https://github.com/theelous3/overly
